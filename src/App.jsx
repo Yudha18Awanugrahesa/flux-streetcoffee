@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import {
-  Instagram,
   MapPin,
   Clock,
   Sparkles,
@@ -8,7 +7,27 @@ import {
   ArrowUpRight,
   Menu,
   X,
+  Maximize2,
 } from "lucide-react";
+
+function InstagramIcon({ className = "w-4 h-4" }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+    </svg>
+  );
+}
 
 const MENU_ITEMS = [
   {
@@ -17,10 +36,10 @@ const MENU_ITEMS = [
     badge: "NEW DROP",
     tagline: "Orange Meets Cloudy Foam",
     description:
-      "New line up of our refreshment that combines fresh oranges with our secret cream recipe to cheer you up.",
+      "Kesegaran perasan jeruk pilihan dipadukan dengan lapisan secret cream foam yang lembut.",
     ingredients: ["Fresh Orange", "Secret Cream Foam"],
-    accent: "bg-fluxYellow",
-    image: "/images/orange-pop.png",
+    accent: "bg-fluxYellow text-fluxBlue",
+    image: "/image/orange-pop.png",
   },
   {
     id: 2,
@@ -31,7 +50,7 @@ const MENU_ITEMS = [
       "Perpaduan bold espresso, kesegaran jeruk pilihan, dan lapisan creamy secret foam untuk menemani sore hari.",
     ingredients: ["Bold Coffee", "Fresh Orange", "Secret Foam"],
     accent: "bg-fluxRed text-white",
-    image: "/images/sunset-pop.png",
+    image: "/image/sunset-pop.png",
   },
   {
     id: 3,
@@ -39,15 +58,16 @@ const MENU_ITEMS = [
     badge: "WILD SIP",
     tagline: "Sweet Meets Cheese",
     description:
-      "Unique selection untuk menikmati 'jasuke' dengan cara baru. Creamy, savory, dan manis dalam satu tegukan.",
+      "Sensasi menikmati 'jasuke' dalam bentuk minuman creamy, gurih keju, dan manis yang pas.",
     ingredients: ["Sweet Corn", "Creamy Milk", "Cheese Cream"],
-    accent: "bg-fluxYellow",
-    image: "/images/cornstar.png",
+    accent: "bg-fluxYellow text-fluxBlue",
+    image: "/image/cornstar.png",
   },
 ];
 
 export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [selectedPoster, setSelectedPoster] = useState(null);
 
   return (
     <div className="min-h-screen flex flex-col font-sans selection:bg-fluxYellow selection:text-fluxBlue">
@@ -58,19 +78,13 @@ export default function App() {
       <header className="sticky top-0 z-50 bg-fluxCream/95 backdrop-blur border-b-4 border-fluxBlue">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
           <a href="#" className="flex items-center gap-3 group">
-            <div className="w-12 h-12 rounded-xl border-3 border-fluxBlue bg-white overflow-hidden shadow-brutal-sm flex items-center justify-center">
+            {/* Kotak logo dibuat menyatu dengan background gambar logo-flux.png */}
+            <div className="w-14 h-14 rounded-2xl border-3 border-fluxBlue bg-[#E5E5E5] overflow-hidden shadow-brutal-sm flex items-center justify-center shrink-0">
               <img
-                src="/images/logo-flux.png"
+                src="/image/logo-flux.png"
                 alt="FLUX StreetCoffee Logo"
-                className="w-full h-full object-contain p-1"
-                onError={(e) => {
-                  e.target.style.display = "none";
-                  e.target.nextSibling.style.display = "flex";
-                }}
+                className="w-full h-full object-contain scale-110 mix-blend-multiply"
               />
-              <span className="hidden font-display font-bold text-fluxRed text-lg">
-                FLUX
-              </span>
             </div>
             <div>
               <span className="font-display text-2xl font-bold tracking-wide text-fluxRed block leading-none">
@@ -99,7 +113,7 @@ export default function App() {
               rel="noreferrer"
               className="inline-flex items-center gap-2 bg-fluxYellow text-fluxBlue px-4 py-2.5 rounded-xl border-3 border-fluxBlue shadow-brutal-sm hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all"
             >
-              <Instagram className="w-4 h-4" />
+              <InstagramIcon className="w-4 h-4" />
               @flux.streetcoffee
             </a>
           </nav>
@@ -148,7 +162,7 @@ export default function App() {
               rel="noreferrer"
               className="inline-flex items-center gap-2 bg-fluxRed text-white px-4 py-2 rounded-xl border-2 border-fluxBlue"
             >
-              <Instagram className="w-4 h-4" />
+              <InstagramIcon className="w-4 h-4" />
               Follow @flux.streetcoffee
             </a>
           </div>
@@ -202,25 +216,25 @@ export default function App() {
           {/* Right Mascot / Brand Card */}
           <div className="lg:col-span-5 flex justify-center">
             <div className="relative w-full max-w-sm bg-fluxRed rounded-3xl border-4 border-fluxBlue p-6 shadow-brutal rotate-1 hover:rotate-0 transition-transform">
-              <div className="absolute -top-5 -right-4 bg-fluxYellow text-fluxBlue font-display font-bold text-sm px-4 py-2 rounded-full border-3 border-fluxBlue rotate-12 shadow-brutal-sm">
+              <div className="absolute -top-5 -right-4 bg-fluxYellow text-fluxBlue font-display font-bold text-sm px-4 py-2 rounded-full border-3 border-fluxBlue rotate-12 shadow-brutal-sm z-10">
                 NEW DROP. WILD SIP!
               </div>
 
-              <div className="bg-fluxCream rounded-2xl border-3 border-fluxBlue p-6 flex flex-col items-center text-center">
+              {/* Background kartu dibuat senada dengan abu-abu logo agar tidak terlihat kotak */}
+              <div className="bg-[#E5E5E5] rounded-2xl border-3 border-fluxBlue p-6 flex flex-col items-center text-center">
                 <img
-                  src="/images/logo-flux.png"
+                  src="/image/logo-flux.png"
                   alt="Mascot FLUX StreetCoffee"
-                  className="w-56 h-56 object-contain drop-shadow-md"
-                  onError={(e) => {
-                    e.target.style.display = "none";
-                  }}
+                  className="w-60 h-60 object-contain"
                 />
-                <p className="mt-3 font-display text-2xl font-bold text-fluxRed tracking-wide">
-                  FLUX STREETCOFFEE
-                </p>
-                <p className="text-xs font-bold uppercase tracking-widest text-fluxBlue mt-1">
-                  in every Motion, get a Notion
-                </p>
+                <div className="mt-2 bg-fluxCream w-full py-3 px-4 rounded-xl border-2 border-fluxBlue">
+                  <p className="font-display text-xl font-bold text-fluxRed tracking-wide leading-none">
+                    FLUX STREETCOFFEE
+                  </p>
+                  <p className="text-[11px] font-bold uppercase tracking-widest text-fluxBlue mt-1">
+                    in every Motion, get a Notion
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -309,8 +323,8 @@ export default function App() {
               SIGNATURE & WILD SIP
             </h2>
             <p className="text-white/95 font-medium mt-3">
-              Katalog lengkap dan daftar harga sedang disiapkan — berikut
-              beberapa varian unggulan yang sudah hadir di bar kami.
+              Klik poster minuman untuk melihat detail lengkap — katalog penuh
+              dan daftar harga akan segera menyusul.
             </p>
           </div>
 
@@ -318,46 +332,33 @@ export default function App() {
             {MENU_ITEMS.map((item) => (
               <div
                 key={item.id}
-                className="bg-fluxCream rounded-3xl border-4 border-fluxBlue p-6 shadow-brutal flex flex-col justify-between hover:-translate-y-1 transition-transform"
+                className="bg-fluxCream rounded-3xl border-4 border-fluxBlue p-5 shadow-brutal flex flex-col justify-between hover:-translate-y-1 transition-transform"
               >
                 <div>
-                  <div className="flex items-center justify-between gap-2 mb-4">
-                    <span
-                      className={`text-xs font-bold uppercase px-3 py-1 rounded-full border-2 border-fluxBlue ${item.accent}`}
-                    >
-                      {item.badge}
-                    </span>
-                    <span className="text-xs font-bold text-fluxBlue/70 uppercase">
-                      FLUX DROP
-                    </span>
-                  </div>
-
-                  {/* Product Visual Container */}
-                  <div className="h-52 rounded-2xl bg-white border-3 border-fluxBlue mb-5 flex flex-col items-center justify-center p-4 overflow-hidden relative">
+                  {/* Poster Vertical Frame (Rasio 4:5 penuh, pas untuk poster promo) */}
+                  <div
+                    onClick={() => setSelectedPoster(item)}
+                    className="group relative aspect-[4/5] w-full rounded-2xl border-3 border-fluxBlue overflow-hidden mb-5 cursor-pointer bg-fluxBlue"
+                  >
                     <img
                       src={item.image}
                       alt={item.name}
-                      className="h-full object-contain"
-                      onError={(e) => {
-                        e.target.style.display = "none";
-                        e.target.nextSibling.style.display = "flex";
-                      }}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
-                    <div className="hidden flex-col items-center justify-center text-center">
-                      <Coffee className="w-12 h-12 text-fluxRed mb-2" />
-                      <span className="font-display font-bold text-sm text-fluxBlue">
-                        Foto {item.name}
-                      </span>
-                      <span className="text-xs text-fluxBlue/60">
-                        (Tambahkan ke public{item.image})
-                      </span>
+                    <span
+                      className={`absolute top-3 left-3 text-xs font-bold uppercase px-3 py-1 rounded-full border-2 border-fluxBlue shadow-brutal-sm ${item.accent}`}
+                    >
+                      {item.badge}
+                    </span>
+                    <div className="absolute bottom-3 right-3 bg-fluxCream/95 text-fluxBlue p-2 rounded-xl border-2 border-fluxBlue opacity-90 group-hover:opacity-100 transition-opacity">
+                      <Maximize2 className="w-4 h-4" />
                     </div>
                   </div>
 
-                  <h3 className="font-display text-2xl font-bold text-fluxRed">
+                  <h3 className="font-display text-2xl font-bold text-fluxRed leading-tight">
                     {item.name}
                   </h3>
-                  <p className="text-xs font-bold uppercase tracking-wider text-fluxBlue mb-2">
+                  <p className="text-xs font-bold uppercase tracking-wider text-fluxBlue mt-0.5 mb-2">
                     {item.tagline}
                   </p>
                   <p className="text-sm text-fluxBlue/85 leading-relaxed mb-4">
@@ -365,7 +366,7 @@ export default function App() {
                   </p>
                 </div>
 
-                <div className="pt-4 border-t-2 border-dashed border-fluxBlue/30 flex flex-wrap gap-2">
+                <div className="pt-3 border-t-2 border-dashed border-fluxBlue/30 flex flex-wrap gap-2">
                   {item.ingredients.map((ing, idx) => (
                     <span
                       key={idx}
@@ -448,7 +449,7 @@ export default function App() {
           <div className="bg-fluxCream text-fluxBlue rounded-3xl border-4 border-fluxYellow p-8 shadow-[8px_8px_0px_0px_#E11D2E]">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-12 h-12 rounded-2xl bg-fluxRed text-white flex items-center justify-center border-2 border-fluxBlue">
-                <Instagram className="w-6 h-6" />
+                <InstagramIcon className="w-6 h-6" />
               </div>
               <div>
                 <p className="font-display text-xl font-bold">
@@ -492,6 +493,32 @@ export default function App() {
 
       {/* Bottom Checkered Strip */}
       <div className="h-5 w-full checkered-blue border-t-4 border-fluxBlue" />
+
+      {/* Lightbox Modal untuk Melihat Poster Penuh */}
+      {selectedPoster && (
+        <div
+          onClick={() => setSelectedPoster(null)}
+          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="relative max-w-md w-full bg-fluxCream rounded-3xl border-4 border-fluxYellow p-3 shadow-brutal"
+          >
+            <button
+              onClick={() => setSelectedPoster(null)}
+              className="absolute -top-4 -right-4 bg-fluxRed text-white p-2 rounded-full border-3 border-fluxBlue shadow-brutal-sm"
+              aria-label="Tutup pratinjau"
+            >
+              <X className="w-5 h-5" />
+            </button>
+            <img
+              src={selectedPoster.image}
+              alt={selectedPoster.name}
+              className="w-full rounded-2xl border-2 border-fluxBlue"
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

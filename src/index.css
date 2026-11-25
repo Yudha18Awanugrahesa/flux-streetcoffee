@@ -1,6 +1,16 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Fredoka", cursive, sans-serif;
+  --font-sans: "Space Grotesk", sans-serif;
+  --color-fluxRed: #e11d2e;
+  --color-fluxBlue: #1218a6;
+  --color-fluxYellow: #ffd60a;
+  --color-fluxCream: #faf8f5;
+  --shadow-brutal: 6px 6px 0px 0px #1218a6;
+  --shadow-brutal-red: 6px 6px 0px 0px #e11d2e;
+  --shadow-brutal-sm: 4px 4px 0px 0px #1218a6;
+}
 
 .bg-paper-texture {
   background-color: #faf8f5;
