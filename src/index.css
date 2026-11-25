@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.bg-paper-texture {
+  background-color: #faf8f5;
+  background-image:
+    radial-gradient(#1218a6 0.65px, transparent 0.65px),
+    radial-gradient(#e11d2e 0.65px, #faf8f5 0.65px);
+  background-size: 28px 28px;
+  background-position:
+    0 0,
+    14px 14px;
+}
+
+.checkered-red {
+  background-image: repeating-conic-gradient(#e11d2e 0% 25%, #faf8f5 0% 50%);
+  background-size: 32px 32px;
+}
+
+.checkered-blue {
+  background-image: repeating-conic-gradient(#1218a6 0% 25%, #faf8f5 0% 50%);
+  background-size: 28px 28px;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 18s linear infinite;
+}
